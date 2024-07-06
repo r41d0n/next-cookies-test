@@ -1,20 +1,25 @@
 
 'use client'
 
+import {setCookie} from "cookies-next";
+import {useRouter} from "next/navigation";
 import {useState} from "react";
 
 interface TabBarProps {
-    currentTab: number;
+    currentTab?: number;
     tabOptions?: number[];
 }
 
 export const TabBar = ({tabOptions = [1, 2, 3, 4], currentTab = 1}: TabBarProps) => {
     // TODO: Make the grid-cols dynamic
     //const gridCols = `grid-cols-${tabsOptions.length}`;
+    const router = useRouter();
     const [selected, setSelected] = useState(currentTab);
     const onTabSelected = (tab: number) => {
         setSelected(tab);
-    };
+        setCookie('selectedTab', tab.toString());
+        router.refresh();
+    }
     return (
         <div className={`grid grid-cols-4 w-full space-x-2 rounded-xl bg-gray-200 p-2`}>
             {

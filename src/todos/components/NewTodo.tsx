@@ -5,7 +5,7 @@ import {useState} from "react";
 import {IoTrashOutline} from "react-icons/io5";
 import {addTodo, deleteCompleted} from "../actions/todo-actions";
 
-// import *as todosApi from '@/todos/helpers/todos';
+import *as todosApi from '@/todos/helpers/todos';
 
 export const NewTodo = () => {
     const [description, setDescription] = useState('');
@@ -16,7 +16,7 @@ export const NewTodo = () => {
         e.preventDefault();
         if (description.trim().length === 0) return;
 
-        await addTodo(description);
+        await todosApi.createTodo(description);
 
         setDescription('');
         router.refresh();

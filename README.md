@@ -14,7 +14,9 @@ steps to run the app in development mode
 
 
 # Testing
-
+default user
+__user__: test1@google.com
+__password__: 123456
 
 # Prisma commands
 ```
